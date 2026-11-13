@@ -1,0 +1,353 @@
+@import "tailwindcss";
+
+/* Found It: a lost-property parcel shelf. An off-white room, wooden shelving, kraft-paper parcels tied with
+   red twine, a deep green for what went home. Familjen Grotesk for headings, Literata to read, Martian Mono
+   for numbers and digests. */
+
+@theme {
+  --color-room: #faf6ef;
+  --color-room-2: #f2ebe0;
+  --color-paper: #fffdf8;
+  --color-ink: #2b2420;
+  --color-ink-2: #574b42;
+  --color-ink-3: #85776b;
+  --color-line: #e4d9ca;
+  --color-line-2: #cdbca6;
+  --color-kraft: #c8a27a;
+  --color-kraft-2: #a9825b;
+  --color-kraft-3: #e3c8a6;
+  --color-kraft-wash: #f3e7d6;
+  --color-twine: #b23a48;
+  --color-twine-deep: #8c2a37;
+  --color-twine-wash: #f7e3e3;
+  --color-green: #23453b;
+  --color-green-2: #31604f;
+  --color-green-wash: #e2ece6;
+  --color-ochre: #85621c;
+  --color-ochre-wash: #f5ecd6;
+  --color-wood: #a9754b;
+  --color-wood-2: #7e5433;
+  --color-wood-3: #c99a6b;
+
+  --font-head: var(--font-familjen), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-literata), ui-serif, Georgia, serif;
+  --font-mono: var(--font-martian), ui-monospace, monospace;
+}
+
+html {
+  background: var(--color-room);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--color-room);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.55;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+.head {
+  font-family: var(--font-head);
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+  letter-spacing: -0.01em;
+}
+
+.link {
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--color-twine) 55%, transparent);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+}
+.link:hover {
+  color: var(--color-twine-deep);
+}
+
+:focus-visible {
+  outline: 2.5px solid var(--color-twine);
+  outline-offset: 2px;
+}
+
+/* ---- the room ------------------------------------------------------------------------------------- */
+
+/* A faint wall of painted boards behind everything. */
+.wall {
+  background-color: var(--color-room);
+  background-image: repeating-linear-gradient(90deg, transparent 0 139px, rgba(120, 90, 60, 0.045) 139px 141px);
+}
+
+/* ---- wooden shelving ------------------------------------------------------------------------------ */
+
+.shelf {
+  position: relative;
+  border-left: 14px solid var(--color-wood-2);
+  border-right: 14px solid var(--color-wood-2);
+  background: linear-gradient(180deg, #efe4d4, #e9dcc8);
+  box-shadow: inset 0 10px 18px -12px rgba(60, 35, 15, 0.35);
+  border-image: linear-gradient(180deg, var(--color-wood), var(--color-wood-2)) 1;
+}
+.shelf-bay {
+  position: relative;
+  padding: 18px 14px 0;
+}
+.plank {
+  height: 20px;
+  margin: 0 -14px;
+  background:
+    repeating-linear-gradient(90deg, rgba(60, 35, 15, 0.07) 0 2px, transparent 2px 11px, rgba(255, 240, 220, 0.06) 11px 13px, transparent 13px 29px),
+    linear-gradient(180deg, var(--color-wood-3) 0 22%, var(--color-wood) 22% 72%, var(--color-wood-2) 72%);
+  box-shadow: 0 6px 10px -4px rgba(60, 35, 15, 0.35);
+}
+
+/* The shelf number stencilled on a parcel: a thin bridge across the middle of every figure. */
+.stencil {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: rgba(43, 36, 32, 0.78);
+  -webkit-mask-image: linear-gradient(180deg, #000 0 46%, transparent 46% 55%, #000 55%);
+  mask-image: linear-gradient(180deg, #000 0 46%, transparent 46% 55%, #000 55%);
+}
+
+/* ---- paper -------------------------------------------------------------------------------------- */
+
+.sheet {
+  background: var(--color-paper);
+  border: 1px solid var(--color-line);
+  border-radius: 10px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset, 0 2px 6px -3px rgba(60, 35, 15, 0.18);
+}
+
+.kraft {
+  background-color: var(--color-kraft);
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.12) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 70% 60%, rgba(60, 35, 15, 0.1) 0 1px, transparent 1.5px),
+    linear-gradient(170deg, rgba(255, 255, 255, 0.12), rgba(60, 35, 15, 0.08));
+  background-size: 7px 7px, 11px 11px, 100% 100%;
+}
+
+/* The folded note inside the parcel: two halves either side of a crease. */
+.note {
+  position: relative;
+  background: linear-gradient(180deg, #fffdf6 0 49.6%, #f1eadc 49.6% 50.4%, #fbf6ea 50.4%);
+  border: 1px solid #ddd0bb;
+  border-radius: 4px;
+  box-shadow: 0 8px 16px -10px rgba(60, 35, 15, 0.45);
+  transform: rotate(-0.6deg);
+}
+.note-sealed .note-text {
+  filter: blur(5px);
+  user-select: none;
+}
+
+/* The printed result slip. */
+.slip {
+  background: var(--color-paper);
+  border: 1px solid var(--color-line-2);
+  border-top: 7px solid var(--slip, var(--color-ink));
+  border-radius: 3px 3px 8px 8px;
+  box-shadow: 0 10px 22px -14px rgba(60, 35, 15, 0.5);
+  background-image: linear-gradient(180deg, transparent calc(100% - 1px), rgba(60, 35, 15, 0.05) 1px);
+}
+.slip-rule {
+  border-top: 1.5px dashed var(--color-line-2);
+}
+
+/* ---- buttons: rounded rectangles with a stitched border and a pressed state ------------------------ */
+
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.55rem 1.15rem;
+  border-radius: 10px;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1.2;
+  text-align: center;
+  cursor: pointer;
+  border: 1.5px solid var(--btn-edge);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  box-shadow: 0 3px 0 var(--btn-edge);
+  outline: 1.5px dashed var(--btn-stitch);
+  outline-offset: -6px;
+  transition: transform 80ms ease, box-shadow 80ms ease, background-color 120ms ease;
+  --btn-bg: var(--color-twine);
+  --btn-fg: #fff;
+  --btn-edge: var(--color-twine-deep);
+  --btn-stitch: rgba(255, 255, 255, 0.55);
+}
+.btn:hover {
+  filter: brightness(1.04);
+}
+.btn:active:not(:disabled),
+.btn[aria-pressed="true"] {
+  transform: translateY(3px);
+  box-shadow: 0 0 0 var(--btn-edge), inset 0 2px 4px rgba(0, 0, 0, 0.18);
+}
+.btn:focus-visible {
+  outline: 2.5px solid var(--color-ink);
+  outline-offset: 2px;
+}
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+  box-shadow: 0 1px 0 var(--btn-edge);
+}
+.btn-green {
+  --btn-bg: var(--color-green);
+  --btn-edge: #142a23;
+  --btn-stitch: rgba(255, 255, 255, 0.5);
+}
+.btn-kraft {
+  --btn-bg: var(--color-kraft);
+  --btn-fg: var(--color-ink);
+  --btn-edge: var(--color-kraft-2);
+  --btn-stitch: rgba(43, 36, 32, 0.45);
+}
+.btn-paper {
+  --btn-bg: var(--color-paper);
+  --btn-fg: var(--color-ink);
+  --btn-edge: var(--color-line-2);
+  --btn-stitch: rgba(43, 36, 32, 0.32);
+}
+.btn-sm {
+  min-height: 36px;
+  padding: 0.35rem 0.8rem;
+  font-size: 13.5px;
+  border-radius: 8px;
+  outline-offset: -5px;
+}
+.btn-block {
+  display: flex;
+  width: 100%;
+}
+
+/* Suggestion chips: small stitched rectangles, lighter than buttons. */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 34px;
+  max-width: 100%;
+  padding: 0.3rem 0.7rem;
+  border-radius: 7px;
+  border: 1.5px solid var(--color-line-2);
+  background: var(--color-room-2);
+  color: var(--color-ink);
+  font-family: var(--font-head);
+  font-size: 13.5px;
+  font-weight: 600;
+  text-align: left;
+  outline: 1px dashed rgba(43, 36, 32, 0.25);
+  outline-offset: -4px;
+  cursor: pointer;
+}
+.chip:hover {
+  background: var(--color-kraft-wash);
+  border-color: var(--color-kraft-2);
+}
+.chip:active {
+  transform: translateY(1px);
+}
+.chip[aria-pressed="true"] {
+  background: var(--color-kraft-3);
+  border-color: var(--color-kraft-2);
+}
+
+/* ---- fields --------------------------------------------------------------------------------------- */
+
+.field {
+  width: 100%;
+  min-width: 0;
+  border: 1.5px solid var(--color-line-2);
+  border-radius: 8px;
+  background: var(--color-paper);
+  padding: 0.6rem 0.75rem;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.45;
+  color: var(--color-ink);
+}
+.field:focus {
+  outline: none;
+  border-color: var(--color-twine);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-twine) 18%, transparent);
+}
+.label {
+  display: block;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 14.5px;
+}
+
+/* ---- motion ------------------------------------------------------------------------------------- */
+
+@keyframes sway {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-1.2deg);
+  }
+}
+.sway {
+  transform-origin: 50% 100%;
+  animation: sway 2.6s ease-in-out infinite;
+}
+
+@keyframes pull {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+.twine-moving {
+  stroke-dasharray: 6 6;
+  animation: pull 1.2s linear infinite;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.rise {
+  animation: rise 260ms ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
