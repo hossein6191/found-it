@@ -1,0 +1,100 @@
+[keeper] starting 2026-11-13T09:46:17.752Z
+[09:46:23] OWNER     0x6eD045B2365a429c45819102d2804E96Ce3EED61  lost a backpack, an umbrella and a scarf; posts them, reveals, reseals, takes back an unclaimed reward
+           FINDER    0x151953EE650BDE40055e4DB521c9Bf57D6aE451e  has the backpack and the umbrella, and describes their hidden marks
+           GUESSER   0x466bf5FA06A72A728E3BDB407c73d8d2dCc4572A  has never seen the backpack, and tries for its reward twice
+           STRANGER  0x773f3B2B94046381A43A710E3DfBE4a4CD98aE73  holds nothing; copies revealed marks, claims out of turn, reveals another's item, defaults the umbrella
+
+[09:46:23] ---- 1: deploy
+      [09:47:01] OWNER deploy  0xe481621939bb643c7f02d4b8804acbd02f3fbc6c9999ae91a2870b544344eb5d  3 agree, 0 disagree, 2 idle  SUCCESS  0x428CC86a2ea976769e218Fc2915E2E54294cA1Be
+      Found It at 0x428CC86a2ea976769e218Fc2915E2E54294cA1Be
+PASS  Found It is deployed and holds nothing yet  - {"items":0,"returned":0,"withdrawn":0,"claims":0,"matched":0,"no_match":0,"unclear":0,"defaulted":0,"reseals":0,"refunds":0,"credits_held":"0","rewards_held":"0","bonds_held":"0","rewards_paid":"0","bonds_to_owners":"0","rewards_back":"0","balance_owed":"0","now":1794563221}
+
+[09:47:03] ---- 2: the claim bonds, a refused post, and three lost items
+      [09:47:43] FINDER deposit() +0.04 GEN  0xf4698fc28a8c1cc828fbf6af326cf9aa334fdc6bd6152030558326ee5f27c428  3 agree, 0 disagree, 2 idle  SUCCESS
+PASS  FINDER deposits 0.04 GEN of credit, two claim bonds; no model runs  - 3 agree, 0 disagree, 2 idle
+      [09:48:23] GUESSER deposit() +0.04 GEN  0xf5683d4e65dee1500d53c9392e15d015ab2fd2b51aab202880ef71f8a866353e  3 agree, 0 disagree, 2 idle  SUCCESS
+PASS  GUESSER deposits 0.04 GEN of credit, two claim bonds; no model runs  - 3 agree, 0 disagree, 2 idle
+      [09:49:03] OWNER post_lost(Navy backpack, number , A navy blue backpack l, 854259998921dcd5d1b3ab, 1800, 1794574104) +0.01 GEN  0xd26cea4569fa7220b0b02b61bd317e3a98ef5b7e80d7ecad2d3246570ac27f51  3 agree, 0 disagree, 2 idle  SUCCESS
+PASS  OWNER posts with 0.01 GEN, under the 0.05 GEN floor: refused, and every atto comes back in the same transaction  - 3 agree, 0 disagree, 2 idle  {"ok": false, "reason": "send the reward with this call: 50000000000000000 to 50000000000000000000 atto (0.05 to 50 GEN); this sends 1000000
+      [09:49:43] OWNER post_lost(Navy backpack, number , A navy blue backpack l, 854259998921dcd5d1b3ab, 1800, 1794574104) +0.5 GEN  0x659f8748dfb7a33f75a5e9e50bf1a73287edebd9ac53d5c39249314d9c2cd7f4  4 agree, 0 disagree, 1 idle  SUCCESS
+PASS  OWNER posts L1, the navy backpack, with a 0.5 GEN reward and seal A; no model runs  - 4 agree, 0 disagree, 1 idle  {"ok": true, "item": "L1", "reward": "500000000000000000", "claim_bond": "20000000000000000", "posted_at": 1794563346, "claim_by": 179457410
+      [09:50:23] OWNER post_lost(Black umbrella, Quay R, A black folding umbrel, 2d65e71f3617307ae5ddf3, 600, 1794574183) +0.2 GEN  0x645519ed21a0f52c4bc8e1d10541d070f2e7443840c6a882c48f1324a6695bac  3 agree, 0 disagree, 2 idle  SUCCESS
+PASS  OWNER posts L2, the black umbrella, 0.2 GEN, with a ten-minute reveal window  - 3 agree, 0 disagree, 2 idle  {"ok": true, "item": "L2", "reward": "200000000000000000", "claim_bond": "20000000000000000", "posted_at": 1794563386, "claim_by": 179457418
+      [09:51:08] OWNER post_lost(Grey wool scarf, Harbo, A grey wool scarf left, c5aa6e2cf48e72f78d9c30, 1800, 1794564624) +0.1 GEN  0x21898797ec883a0ed16a26d5f01870911b20f6c912683fe16a904b42d7e461d7  3 agree, 0 disagree, 2 idle  SUCCESS
+PASS  OWNER posts L3, the grey wool scarf, 0.1 GEN, claims closing twenty minutes on  - 3 agree, 0 disagree, 2 idle  {"ok": true, "item": "L3", "reward": "100000000000000000", "claim_bond": "20000000000000000", "posted_at": 1794563427, "claim_by": 179456462
+PASS  the three item ids are read from the receipts, and differ  - L1 L2 L3
+      [09:51:46] OWNER withdraw_reward(L3)  0xe81f82b32f0784267ef57627f7aa6461f1fe4fc541e5185b9d9e1ad8506fe6c1  3 agree, 0 disagree, 2 idle  ERROR
+PASS  OWNER tries to take L3's reward back at once: refused, its claims are still open  - 3 agree, 0 disagree, 2 idle  [EXPECTED] claims on L3 are open for another 1154 seconds; the reward comes back only once claim_by has passed with no s
+PASS  item(L1): open, the public description, the digest of seal A, no marks shown  - {"status":"open","sealed":true}
+
+[09:51:48] ---- 3: FINDER claims the umbrella, and OWNER never answers
+      [09:52:30] FINDER claim(L2, The wooden handle has )  0xe958b9e4477b7deffbeaa59c2bcc9ae4388f5d380395dad365ec8cf59583ad7b  3 agree, 0 disagree, 2 idle  SUCCESS
+PASS  FINDER claims L2: the bond leaves credit, no model runs, the reveal window opens  - 3 agree, 0 disagree, 2 idle  {"ok": true, "claim": "C1", "item": "L2", "number": 1, "bond": "20000000000000000", "credit": "20000000000000000", "reveal_by": 1794564109}
+      [09:53:08] STRANGER default(L2)  0x2ba9f1dede8da6728c9ad853409823c1590f3a981074601b96d11a6680fd8b97  3 agree, 0 disagree, 2 idle  ERROR
+PASS  STRANGER tries to default L2 at once: refused, the reveal window is open  - 3 agree, 0 disagree, 2 idle  [EXPECTED] the reveal window of C1 is open for another 557 seconds; default pays the claim only once the owner has let i
+
+[09:53:08] ---- 4: GUESSER's first claim on the backpack, judged against seal A
+      [09:53:52] GUESSER claim(L1, A red tag reading HARB)  0xcd77cc31b9b7b3f59808c5a652a17def33f7b98c2d60aa3628dd6eb652cf0f17  3 agree, 0 disagree, 2 idle  SUCCESS
+PASS  GUESSER claims L1: a red tag reading HARBOUR, a library card for Ines Corrie  - 3 agree, 0 disagree, 2 idle  {"ok": true, "claim": "C2", "item": "L1", "number": 1, "bond": "20000000000000000", "credit": "20000000000000000", "reve
+      [09:54:30] STRANGER claim(L1, It has a red tag that )  0xcd5db961d8095ad500391f66b98c99df732764f25f06689941905cb875011b89  3 agree, 0 disagree, 2 idle  ERROR
+PASS  STRANGER claims L1 too: refused, one claim at a time  - 3 agree, 0 disagree, 2 idle  [EXPECTED] L1 has a claim pending, C2; one claim at a time, so it takes the next once that one is settled
+      [09:55:08] STRANGER reveal(L1, a library card for Mar, 5935756ec22291449dda55)  0x679fded886db3684436ec5dac24aae8abba72327f11e71251e564d1a6774effd  3 agree, 0 disagree, 2 idle  ERROR
+PASS  STRANGER tries to reveal L1 with the right marks and salt: refused, only the owner may  - 3 agree, 0 disagree, 2 idle  [EXPECTED] only the owner of L1 may reveal its hidden marks
+      [09:56:08] OWNER reveal(L1, a library card for Mar, 5935756ec22291449dda55)  0xc8768a2266745c22b49a5cb5dc295f298f86d51e7bc69936cd727f66b2a7042b  3 agree, 0 disagree, 2 idle  SUCCESS
+PASS  OWNER reveals seal A; one consensus round of four askings reads the card as contradicted: no_match  - 3 agree, 0 disagree, 2 idle  no_match
+PASS  and GUESSER's 0.02 GEN bond reaches OWNER in the same transaction  - {"owner":"20000000000000000","guesser":"0"}
+
+[09:56:13] ---- 5: seal A is public; a copy is refused; seal B judges GUESSER's second claim
+      [09:56:51] STRANGER claim(L1, It has a library card )  0x8506e5210d01d21bcac7a7cd19bad25334f11046c1a930d209ff2556c5aee292  5 agree, 0 disagree, 0 idle  ERROR
+PASS  STRANGER copies the revealed seal A into a claim: refused, L1 takes no claim until its owner seals new marks  - 5 agree, 0 disagree, 0 idle  [EXPECTED] the hidden marks of L1 were revealed at 1794563709 and are public, so a claim against them could only copy them; L1 takes claims 
+      [09:57:33] OWNER reseal(L1, fe17621a97e7fe208a1269)  0xd72b8cfdb15790b486dc9e03cff1079df62f2138e488ae15b5b3fbe25e9cc4b5  3 agree, 0 disagree, 2 idle  SUCCESS
+PASS  OWNER reseals L1 with seal B; it is open again  - 3 agree, 0 disagree, 2 idle  {"ok": true, "item": "L1", "status": "open", "seals": 2, "claim_by": 1794574104}
+      [09:58:12] GUESSER claim(L1, It is a blue bag with )  0x9a4ad12bef7b1e536e49055e518561b614f5e9ad58e47838f7554b42930f904b  3 agree, 0 disagree, 2 idle  SUCCESS
+PASS  GUESSER claims L1 again: it is a blue bag with some stuff inside  - 3 agree, 0 disagree, 2 idle  {"ok": true, "claim": "C3", "item": "L1", "number": 2, "bond": "20000000000000000", "credit": "0", "reveal_by": 17945656
+      [09:59:13] OWNER reveal(L1, a broken zip pull on t, 14aafed57e4fd2bd86df6b)  0x86ad4374268b24e09519468cd62190a47f74997a37b491a52680d4b583b31834  3 agree, 0 disagree, 2 idle  SUCCESS
+PASS  OWNER reveals seal B: no_match, too general to name any mark  - 3 agree, 0 disagree, 2 idle  no_match
+PASS  and the second 0.02 GEN bond reaches OWNER in the same transaction  - {"owner":"20000000000000000"}
+
+[09:59:14] ---- 6: seal C, a third claim refused, and FINDER's description judged
+      [09:59:52] OWNER reseal(L1, c54d915d6caccf91fd373d)  0xa199a6422731dae72bd6ba4fbdec6cd8ab2eb2c6e4957037ca6a09e0f125d793  3 agree, 0 disagree, 2 idle  SUCCESS
+PASS  OWNER reseals L1 with seal C  - 3 agree, 0 disagree, 2 idle  {"ok": true, "item": "L1", "status": "open", "seals": 3, "claim_by": 1794574104}
+      [10:00:31] GUESSER claim(L1, It has a red tag that )  0x106b7a1dda927c4792efc2e85fd0ff3d242619630aace60ec21533aa07c33439  3 agree, 0 disagree, 2 idle  ERROR
+PASS  GUESSER tries a third claim: refused, one address claims an item at most twice  - 3 agree, 0 disagree, 2 idle  [EXPECTED] this address has claimed L1 2 times; one address claims an item at most 2 times
+      [10:01:11] FINDER claim(L1, It has a red tag that )  0xfcd9aadfb37ad96126b0a52165ae38a41bd5d05850593db83632229d06f1bfea  3 agree, 0 disagree, 2 idle  SUCCESS
+PASS  FINDER claims L1: a red tag that says TIDEPOOL, a green bottle with a crack in the side pocket  - 3 agree, 0 disagree, 2 idle  {"ok": true, "claim": "C4", "item": "L1", "number": 3, "bond": "20000000000000000", "credit": "0", "reveal_by": 17945658
+      [10:02:35] OWNER reveal(L1, a red luggage tag read, 00c85c4e374badfd716741)  0x4831f6ec3a95e956eaf57912b70f377dc1c053f9721cf6f7d2f63c36ccd743ca  3 agree, 0 disagree, 1 idle  SUCCESS
+PASS  OWNER reveals seal C: the description names the tag and the bottle and contradicts nothing, match  - 3 agree, 0 disagree, 1 idle  match
+PASS  and the 0.5 GEN reward reaches FINDER in the same transaction, the bond back in credit  - {"finder":"500000000000000000","owner":"0"}
+      [10:03:16] FINDER claim(L1, It has a red tag that )  0xdcafdcfd8ef1484b003d141e00802ac0411ff77ab5c9e314e91efada34e9420a  4 agree, 0 disagree, 1 idle  ERROR
+PASS  FINDER claims L1 again: refused, it is returned  - 4 agree, 0 disagree, 1 idle  [EXPECTED] L1 is returned and takes no claim
+
+[10:03:16] ---- 7: the umbrella defaulted, the scarf's reward taken back, the bonds withdrawn
+      [10:03:56] STRANGER default(L2)  0x573ae1a9344ae8642b2a9767fb5ec33a60d69e5c977bcdf73f61ccf8376a57e1  3 agree, 0 disagree, 2 idle  SUCCESS
+PASS  STRANGER defaults L2: OWNER never revealed, so the 0.2 GEN reward reaches FINDER as if it matched  - 3 agree, 0 disagree, 2 idle  {"finder":"200000000000000000","owner":"0","stranger":"0"}
+      [10:11:24] OWNER withdraw_reward(L3)  0x6f0f0a781592f514bc6a5cf746bb217c42715edcafb1cc76921959c6d2371498  3 agree, 0 disagree, 2 idle  SUCCESS
+PASS  OWNER takes L3's 0.1 GEN back: its claim deadline passed with nobody claiming  - 3 agree, 0 disagree, 2 idle  {"ok": true, "item": "L3", "status": "withdrawn", "returned": "100000000000000000", "closed_at": 1794564648}
+      [10:12:03] FINDER withdraw(40000000000000000)  0x32bfafbcc99cfd5a58afb2591360af2fd9d89b8af66732e7369d6088fb6064da  3 agree, 0 disagree, 2 idle  SUCCESS
+PASS  FINDER withdraws the two 0.02 GEN bonds that came back to credit  - 3 agree, 0 disagree, 2 idle  {"ok": true, "returned": "40000000000000000", "credit": "0"}
+
+[10:12:03] ---- 8: the views, the code, and the money
+PASS  item(L1): returned by FINDER's claim, three seals, seal C's marks and salt shown  - {"status":"returned","seals":3,"claims":3}
+PASS  claims_of(L1, 0, 20): three claims, each with the marks it was judged against  - ["no_match","no_match","match"]
+PASS  item(L2): returned by default, its marks never revealed  - {"status":"returned","defaulted":1}
+PASS  items_of(FINDER): the backpack and the umbrella, as finder  - ["L2 finder","L1 finder"]
+PASS  items(0, 20): three items, returned, returned, withdrawn  - ["returned","returned","withdrawn"]
+PASS  credit() is zero for every claimant: nothing is left held for anybody  - ["0","0","0"]
+PASS  stats(): three items, four claims, one match, two no_match, one default, two reseals, nothing held  - {"items":3,"returned":2,"withdrawn":1,"claims":4,"matched":1,"no_match":2,"unclear":0,"defaulted":1,"reseals":2,"refunds":1,"credits_held":"0","rewards_held":"0","bonds_held":"0","rewards_paid":"700000000000000000","bonds_to_owners":"40000000000000000","rewards_back":"100000000000000000","balance_owed":"0","now":1794564751}
+PASS  rules(): the four questions word for word, four askings, the combine rule and the limits  - value,questions,askings,reading,combine,compared,not_asked,money,settlement,windows,who,seal,sizes,limits,untrusted
+PASS  the contract's own balance is zero  - 0
+PASS  the code deployed at 0x428CC86a2ea976769e218Fc2915E2E54294cA1Be is byte for byte contracts/found_it.py  - 61649 bytes, sha256 5ad6a6a1de82cf54c3cebf141b8c731549c2352a086e8fe4132e9b3603137a47
+PASS  over the run every account ends exactly where the receipts say: FINDER 0.7 GEN up, GUESSER 0.04 GEN down, OWNER 0.66 GEN down  - OWNER -0.66 (receipts -0.66)  FINDER 0.7 (receipts 0.7)  GUESSER -0.04 (receipts -0.04)  STRANGER 0 (receipts 0)
+
+42 passed, 0 failed
+Found It: 0x428CC86a2ea976769e218Fc2915E2E54294cA1Be
+transactions: 26 in 26 steps; sent a second time: none
+revealA            0xc8768a2266745c22b49a5cb5dc295f298f86d51e7bc69936cd727f66b2a7042b 3 agree, 0 disagree, 2 idle  C2 no_match
+revealB            0x86ad4374268b24e09519468cd62190a47f74997a37b491a52680d4b583b31834 3 agree, 0 disagree, 2 idle  C3 no_match
+revealC            0x4831f6ec3a95e956eaf57912b70f377dc1c053f9721cf6f7d2f63c36ccd743ca 3 agree, 0 disagree, 1 idle  C4 match
+defaultL2          0x573ae1a9344ae8642b2a9767fb5ec33a60d69e5c977bcdf73f61ccf8376a57e1 3 agree, 0 disagree, 2 idle  C1 default
+
+exit 0

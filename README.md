@@ -327,7 +327,42 @@ line.
 
 ## Evidence
 
-The on-chain run is recorded here once it has run.
+Run on 13 November 2026 on GenLayer Studio (chain 61999) by `tests/on_chain/smoke.mjs`, from generated accounts funded from the
+Studio faucet, none of them anybody's wallet: **OWNER** posts and seals, **FINDER** and **GUESSER** claim, **STRANGER** tries what it may not. **42 passed, 0 failed**; transactions: 26 in 26 steps; sent a second time: none.
+The whole log is `tests/on_chain/smoke-run.log`. Each seal was judged against one claim: a description that got a mark wrong read no match and its bond went to the owner; one too general to identify the bag read no match; after a reseal, the finder's description of the TIDEPOOL tag and the cracked green bottle read match and the reward reached the finder in that transaction. An owner who never revealed was defaulted, and the claim was paid.
+
+- `deploy` deployed at [`0x428CC86a2ea976769e218Fc2915E2E54294cA1Be`](https://explorer-studio.genlayer.com/address/0x428CC86a2ea976769e218Fc2915E2E54294cA1Be)
+
+- the code deployed at 0x428CC86a2ea976769e218Fc2915E2E54294cA1Be is byte for byte contracts/found_it.py: 61649 bytes, sha256 5ad6a6a1de82cf54c3cebf141b8c731549c2352a086e8fe4132e9b3603137a47
+
+| step | by | transactions | votes |
+|---|---|---|---|
+| Found It is deployed and holds nothing yet | OWNER | [0xe4816219…](https://explorer-studio.genlayer.com/tx/0xe481621939bb643c7f02d4b8804acbd02f3fbc6c9999ae91a2870b544344eb5d) | 3 agree, 0 disagree, 2 idle |
+| FINDER deposits 0.04 GEN of credit, two claim bonds; no model runs | FINDER | [0xf4698fc2…](https://explorer-studio.genlayer.com/tx/0xf4698fc28a8c1cc828fbf6af326cf9aa334fdc6bd6152030558326ee5f27c428) | 3 agree, 0 disagree, 2 idle |
+| GUESSER deposits 0.04 GEN of credit, two claim bonds; no model runs | GUESSER | [0xf5683d4e…](https://explorer-studio.genlayer.com/tx/0xf5683d4e65dee1500d53c9392e15d015ab2fd2b51aab202880ef71f8a866353e) | 3 agree, 0 disagree, 2 idle |
+| OWNER posts with 0.01 GEN, under the 0.05 GEN floor: refused, and every atto comes back in the same transaction | OWNER | [0xd26cea45…](https://explorer-studio.genlayer.com/tx/0xd26cea4569fa7220b0b02b61bd317e3a98ef5b7e80d7ecad2d3246570ac27f51) | 3 agree, 0 disagree, 2 idle |
+| OWNER posts L1, the navy backpack, with a 0.5 GEN reward and seal A; no model runs | OWNER | [0x659f8748…](https://explorer-studio.genlayer.com/tx/0x659f8748dfb7a33f75a5e9e50bf1a73287edebd9ac53d5c39249314d9c2cd7f4) | 4 agree, 0 disagree, 1 idle |
+| OWNER posts L2, the black umbrella, 0.2 GEN, with a ten-minute reveal window | OWNER | [0x645519ed…](https://explorer-studio.genlayer.com/tx/0x645519ed21a0f52c4bc8e1d10541d070f2e7443840c6a882c48f1324a6695bac) | 3 agree, 0 disagree, 2 idle |
+| OWNER posts L3, the grey wool scarf, 0.1 GEN, claims closing twenty minutes on | OWNER | [0x21898797…](https://explorer-studio.genlayer.com/tx/0x21898797ec883a0ed16a26d5f01870911b20f6c912683fe16a904b42d7e461d7) | 3 agree, 0 disagree, 2 idle |
+| OWNER tries to take L3's reward back at once: refused, its claims are still open | OWNER | [0xe81f82b3…](https://explorer-studio.genlayer.com/tx/0xe81f82b32f0784267ef57627f7aa6461f1fe4fc541e5185b9d9e1ad8506fe6c1) | 3 agree, 0 disagree, 2 idle |
+| FINDER claims L2: the bond leaves credit, no model runs, the reveal window opens | FINDER | [0xe958b9e4…](https://explorer-studio.genlayer.com/tx/0xe958b9e4477b7deffbeaa59c2bcc9ae4388f5d380395dad365ec8cf59583ad7b) | 3 agree, 0 disagree, 2 idle |
+| STRANGER tries to default L2 at once: refused, the reveal window is open | STRANGER | [0x2ba9f1de…](https://explorer-studio.genlayer.com/tx/0x2ba9f1dede8da6728c9ad853409823c1590f3a981074601b96d11a6680fd8b97) | 3 agree, 0 disagree, 2 idle |
+| GUESSER claims L1: a red tag reading HARBOUR, a library card for Ines Corrie | GUESSER | [0xcd77cc31…](https://explorer-studio.genlayer.com/tx/0xcd77cc31b9b7b3f59808c5a652a17def33f7b98c2d60aa3628dd6eb652cf0f17) | 3 agree, 0 disagree, 2 idle |
+| STRANGER claims L1 too: refused, one claim at a time | STRANGER | [0xcd5db961…](https://explorer-studio.genlayer.com/tx/0xcd5db961d8095ad500391f66b98c99df732764f25f06689941905cb875011b89) | 3 agree, 0 disagree, 2 idle |
+| STRANGER tries to reveal L1 with the right marks and salt: refused, only the owner may | STRANGER | [0x679fded8…](https://explorer-studio.genlayer.com/tx/0x679fded886db3684436ec5dac24aae8abba72327f11e71251e564d1a6774effd) | 3 agree, 0 disagree, 2 idle |
+| OWNER reveals seal A; one consensus round of four askings reads the card as contradicted: no_match | OWNER | [0xc8768a22…](https://explorer-studio.genlayer.com/tx/0xc8768a2266745c22b49a5cb5dc295f298f86d51e7bc69936cd727f66b2a7042b) | 3 agree, 0 disagree, 2 idle |
+| STRANGER copies the revealed seal A into a claim: refused, L1 takes no claim until its owner seals new marks | STRANGER | [0x8506e521…](https://explorer-studio.genlayer.com/tx/0x8506e5210d01d21bcac7a7cd19bad25334f11046c1a930d209ff2556c5aee292) | 5 agree, 0 disagree, 0 idle |
+| OWNER reseals L1 with seal B; it is open again | OWNER | [0xd72b8cfd…](https://explorer-studio.genlayer.com/tx/0xd72b8cfdb15790b486dc9e03cff1079df62f2138e488ae15b5b3fbe25e9cc4b5) | 3 agree, 0 disagree, 2 idle |
+| GUESSER claims L1 again: it is a blue bag with some stuff inside | GUESSER | [0x9a4ad12b…](https://explorer-studio.genlayer.com/tx/0x9a4ad12bef7b1e536e49055e518561b614f5e9ad58e47838f7554b42930f904b) | 3 agree, 0 disagree, 2 idle |
+| OWNER reveals seal B: no_match, too general to name any mark | OWNER | [0x86ad4374…](https://explorer-studio.genlayer.com/tx/0x86ad4374268b24e09519468cd62190a47f74997a37b491a52680d4b583b31834) | 3 agree, 0 disagree, 2 idle |
+| OWNER reseals L1 with seal C | OWNER | [0xa199a642…](https://explorer-studio.genlayer.com/tx/0xa199a6422731dae72bd6ba4fbdec6cd8ab2eb2c6e4957037ca6a09e0f125d793) | 3 agree, 0 disagree, 2 idle |
+| GUESSER tries a third claim: refused, one address claims an item at most twice | GUESSER | [0x106b7a1d…](https://explorer-studio.genlayer.com/tx/0x106b7a1dda927c4792efc2e85fd0ff3d242619630aace60ec21533aa07c33439) | 3 agree, 0 disagree, 2 idle |
+| FINDER claims L1: a red tag that says TIDEPOOL, a green bottle with a crack in the side pocket | FINDER | [0xfcd9aadf…](https://explorer-studio.genlayer.com/tx/0xfcd9aadfb37ad96126b0a52165ae38a41bd5d05850593db83632229d06f1bfea) | 3 agree, 0 disagree, 2 idle |
+| OWNER reveals seal C: the description names the tag and the bottle and contradicts nothing, match | OWNER | [0x4831f6ec…](https://explorer-studio.genlayer.com/tx/0x4831f6ec3a95e956eaf57912b70f377dc1c053f9721cf6f7d2f63c36ccd743ca) | 3 agree, 0 disagree, 1 idle |
+| FINDER claims L1 again: refused, it is returned | FINDER | [0xdcafdcfd…](https://explorer-studio.genlayer.com/tx/0xdcafdcfd8ef1484b003d141e00802ac0411ff77ab5c9e314e91efada34e9420a) | 4 agree, 0 disagree, 1 idle |
+| STRANGER defaults L2: OWNER never revealed, so the 0.2 GEN reward reaches FINDER as if it matched | STRANGER | [0x573ae1a9…](https://explorer-studio.genlayer.com/tx/0x573ae1a9344ae8642b2a9767fb5ec33a60d69e5c977bcdf73f61ccf8376a57e1) | 3 agree, 0 disagree, 2 idle |
+| OWNER takes L3's 0.1 GEN back: its claim deadline passed with nobody claiming | OWNER | [0x6f0f0a78…](https://explorer-studio.genlayer.com/tx/0x6f0f0a781592f514bc6a5cf746bb217c42715edcafb1cc76921959c6d2371498) | 3 agree, 0 disagree, 2 idle |
+| FINDER withdraws the two 0.02 GEN bonds that came back to credit | FINDER | [0x32bfafbc…](https://explorer-studio.genlayer.com/tx/0x32bfafbcc99cfd5a58afb2591360af2fd9d89b8af66732e7369d6088fb6064da) | 3 agree, 0 disagree, 2 idle |
 
 ## Licence
 
